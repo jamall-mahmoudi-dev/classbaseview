@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h2>My Tasks Class Django Programming </h2>
+<a href="{% url 'tasks:create' %}">New</a>
+<ul>
+  {% for task in tasks %}
+  <li>
+    {{ task.title }}
+    <a href="{% url 'tasks:update' task.pk %}">Edit</a>
+    <a href="{% url 'tasks:delete' task.pk %}">Delete</a>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

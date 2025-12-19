@@ -1,0 +1,17 @@
+Browser (GET /create/) 
+    ↓
+urls.py → TaskCreateView.as_view()
+    ↓
+dispatch() → Mixinها (LoginRequiredMixin) چک می‌شوند
+    ↓
+get() → فرم ساخته → render_to_response(template)
+    ↓
+Browser فرم را پر می‌کند → POST
+    ↓
+dispatch() → تشخیص POST → post()
+    ↓
+form_valid() → form.instance.user = request.user
+    ↓
+form.save() → رکورد جدید ایجاد می‌شود
+    ↓
+redirect(success_url) → لیست تسک‌ها (/)
