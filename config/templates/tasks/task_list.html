@@ -1,6 +1,19 @@
-{% extends 'base.html' %} {% block content %}
-<h2>My Tasks Class Django Programming </h2>
-<a href="{% url 'tasks:create' %}">New</a>
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>My Tasks</h2>
+<a href="{% url 'tasks:create' %}">New Task</a>
+
+<!-- پیام‌ها -->
+{% if messages %}
+<ul>
+  {% for message in messages %}
+  <li class="{{ message.tags }}">{{ message }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+<!-- لیست تسک‌ها -->
 <ul>
   {% for task in tasks %}
   <li>
@@ -8,6 +21,24 @@
     <a href="{% url 'tasks:update' task.pk %}">Edit</a>
     <a href="{% url 'tasks:delete' task.pk %}">Delete</a>
   </li>
+  {% empty %}
+  <li>هیچ تسکی وجود ندارد.</li>
   {% endfor %}
 </ul>
+
+<!-- صفحه‌بندی -->
+<div class="pagination">
+  {% if page_obj.has_previous %}
+    <a href="?page=1">« اول</a>
+    <a href="?page={{ page_obj.previous_page_number }}">« قبلی</a>
+  {% endif %}
+
+  <span>صفحه {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}</span>
+
+  {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">بعدی »</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">آخرین »</a>
+  {% endif %}
+</div>
+
 {% endblock %}

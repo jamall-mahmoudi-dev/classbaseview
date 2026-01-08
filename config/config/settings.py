@@ -48,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'tasks.middleware.TaskAccessMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -70,6 +71,7 @@ TEMPLATES = [
 LOGIN_URL = 'login'
 LOGIN_REDIRECT_URL = 'tasks:list'
 LOGOUT_REDIRECT_URL = 'login'
+
 WSGI_APPLICATION = 'config.wsgi.application'
 
 
